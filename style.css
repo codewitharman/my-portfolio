@@ -807,3 +807,165 @@
          100% { border-color: orange }
        }
 
+       .slideshow-container {
+            position: relative;
+            max-width: 1200px;
+            margin: auto;
+            background-color: var(--light);
+            overflow: hidden;
+        }
+
+        /* Hide slides by default */
+        .mySlides {
+            display: none;
+            padding: 20px 0;
+            animation: fade 1s ease-in-out;
+        }
+
+        /* Display 3 projects in a row */
+        .projects-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        /* Next & previous buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.3s ease;
+            border-radius: 3px;
+            user-select: none;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        .prev {
+            left: 0;
+        }
+
+        .next {
+            right: 0;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Dots/indicators */
+        .dots-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: var(--light-gray);
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .active, .dot:hover {
+            background-color: var(--primary);
+        }
+
+        /* Project cards - using your existing CSS */
+        .project-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-content {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 15px 0;
+            gap: 8px;
+        }
+
+        .project-tech span {
+            font-size: 0.8rem;
+            padding: 5px 10px;
+            background-color: var(--light-gray);
+            border-radius: 20px;
+            color: var(--secondary);
+        }
+
+        .project-content ul {
+            list-style-type: none;
+            margin-top: auto;
+        }
+
+        .project-content li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .project-content li::before {
+            content: "•";
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Fading animation */
+        @keyframes fade {
+            from {opacity: 0.7}
+            to {opacity: 1}
+        }
+
+        /* Responsive adjustments */
+        @media screen and (max-width: 1024px) {
+            .projects-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .projects-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .prev, .next {
+                padding: 12px;
+                font-size: 18px;
+            }
+        }

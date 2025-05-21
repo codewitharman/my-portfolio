@@ -36,7 +36,7 @@
         <div class="container">
             <div class="hero-content">
                 <h1>Hi, I'm <span class="sweep-effect">Arman Shaikh</span></h1>
-                <p>A passionate Java Developer with 3 years expertise in Spring Boot, RESTful APIs, and microservices architecture. I build robust and scalable applications that solve real-world problems.</p>
+                <p id="bio-text">A passionate Java Developer with 3 years expertise in Spring Boot, RESTful APIs, and microservices architecture. I build robust and scalable applications that solve real-world problems.</p>
                 <a href="#contact" class="btn">Get In Touch</a>
                 <div class="social-links">
                     <a href="https://github.com/arman2210" target="_blank">
@@ -460,6 +460,37 @@
         document.addEventListener("DOMContentLoaded", function() {
             showSlides(slideIndex);
         });
+
+	document.addEventListener('DOMContentLoaded', function() {
+            const bioElement = document.getElementById('bio-text');
+            const originalText = bioElement.textContent;
+            
+            // Clear the element's content
+            bioElement.textContent = '';
+            
+            // Create cursor element
+            const cursor = document.createElement('span');
+            cursor.className = 'typewriter-cursor';
+            bioElement.appendChild(cursor);
+            
+            let charIndex = 0;
+            const typingSpeed = 40; // milliseconds per character
+            
+            function typeWriter() {
+                if (charIndex < originalText.length) {
+                    // Create a text node before the cursor
+                    bioElement.insertBefore(
+                        document.createTextNode(originalText.charAt(charIndex)),
+                        cursor
+                    );
+                    charIndex++;
+                    setTimeout(typeWriter, typingSpeed);
+                }
+            }
+            
+            // Start typing after a short delay
+            setTimeout(typeWriter, 500);
+        });    
     </script>	
 </body>
 </html>

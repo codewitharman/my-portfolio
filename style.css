@@ -410,15 +410,6 @@
             transition: all 0.3s ease;
         }
 
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .project-content {
-            padding: 25px;
-        }
-
         .project-content h3 {
             font-size: 1.5rem;
             margin-bottom: 10px;

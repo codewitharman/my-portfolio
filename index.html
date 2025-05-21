@@ -13,12 +13,12 @@
             <nav>
                 <div class="logo">
                 	Arman Shaikh | 
-	                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 64 64" fill="none" stroke="#007396" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" style="vertical-align:middle; margin-left:5px;">
-	                    <path d="M32 2c-9 0-15 7-15 16 0 10 18 22 18 22s18-12 18-22c0-9-6-16-15-16z" fill="#5382a1"/>
-	                    <path d="M17 18c0 7 15 16 15 16s15-9 15-16" stroke="#fff" stroke-width="1.5"/>
-	                    <path d="M32 2v36" stroke="#fff" stroke-width="1.5"/>
-	                    <path d="M19 30h26" stroke="#fff" stroke-width="1.5"/>
-	                </svg> 
+	                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5382a1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Java Icon">
+	                    <path d="M9 12c0-3.31 3.134-6 7-6a6.997 6.997 0 0 1-6 6"></path>
+	                    <path d="M12 22s1-1.5 4-1.5 4 1.5 4 1.5"></path>
+	                    <path d="M9 10c0-2.5 3-5 7-5"></path>
+	                    <path d="M15 18c0 2-3 4-6 4"></path>
+	                </svg>
 			Java Developer
                 </div>
                 <ul class="nav-links">
@@ -483,19 +483,23 @@
 	function redirectToWhatsApp() {
 	    window.open('https://wa.me/917715867323', '_blank');
 	}
+	    
 	 document.addEventListener("DOMContentLoaded", () => {
-	        const observer = new IntersectionObserver((entries) => {
-	            entries.forEach((entry) => {
-	                if (entry.isIntersecting) {
-	                    entry.target.classList.add("animate");
-	                }
-	            });
-	        }, { threshold: 0.2 });
-	
-	        document.querySelectorAll('.slide-in-left, .slide-in-right').forEach(el => {
-	            observer.observe(el);
-	        });
+	  const observer = new IntersectionObserver((entries) => {
+	    entries.forEach((entry) => {
+	      if (entry.isIntersecting) {
+	        entry.target.classList.add("animate");
+	        // Optionally unobserve if you want animation once only:
+	        observer.unobserve(entry.target);
+	      }
 	    });
+	  }, { threshold: 0.2 });
+	
+	  document.querySelectorAll('.slide-in-left, .slide-in-right').forEach(el => {
+	    observer.observe(el);
+	  });
+	});
+
 	    
         document.addEventListener('DOMContentLoaded', () => {
             navSlide();

@@ -739,3 +739,52 @@
                 font-size: 2.5rem;
             }
         }
+
+        /* Initial state for both sides */
+       .slide-in-left,
+       .slide-in-right {
+           opacity: 0;
+           transform: translateX(0);
+           animation-fill-mode: forwards;
+           animation-duration: 1s;
+           animation-timing-function: ease-out;
+           animation-delay: 0.2s;
+       }
+       
+       /* Animate from left */
+       .slide-in-left {
+           transform: translateX(-100px);
+           animation-name: slideInLeft;
+       }
+       
+       /* Animate from right */
+       .slide-in-right {
+           transform: translateX(100px);
+           animation-name: slideInRight;
+       }
+       
+       /* Keyframes */
+       @keyframes slideInLeft {
+           to {
+               opacity: 1;
+               transform: translateX(0);
+           }
+       }
+       
+       @keyframes slideInRight {
+           to {
+               opacity: 1;
+               transform: translateX(0);
+           }
+       }
+
+       /* Add animation only when .animate is applied */
+       .slide-in-left.animate {
+           animation-name: slideInLeft;
+       }
+       
+       .slide-in-right.animate {
+           animation-name: slideInRight;
+       }
+
+

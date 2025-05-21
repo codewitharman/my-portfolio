@@ -112,7 +112,6 @@ const contactForm = () => {
 // Type effect for hero text
 const typeEffect = () => {
     const text = document.querySelector('.hero-content h1 span');
-    if (!text) return;
     const fullText = text.textContent;
     text.textContent = '';
     
@@ -128,36 +127,37 @@ const typeEffect = () => {
 };
 
 function redirectToWhatsApp() {
-    // This function can be called by a button onclick or from here if needed
     window.open('https://wa.me/917715867323', '_blank');
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    const aboutSection = document.getElementById('about');
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Add animation class to slide elements inside #about
+                aboutSection.querySelectorAll('.slide-in-left, .slide-in-right').forEach(el => {
+                    el.classList.add('animate');
+                });
+                // Stop observing after animation triggered once
+                observer.unobserve(aboutSection);
+            }
+        });
+    }, {
+        threshold: 0.3  // 30% visible triggers animation
+    });
+
+    if (aboutSection) {
+        observer.observe(aboutSection);
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
     navSlide();
     scrollToSection();
     stickyHeader();
     backToTop();
     contactForm();
     typeEffect();
-
-    // About section animation with IntersectionObserver
-    const aboutSection = document.getElementById('about');
-    if (aboutSection) {
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Add animation class to slide elements inside #about
-                    aboutSection.querySelectorAll('.slide-in-left, .slide-in-right').forEach(el => {
-                        el.classList.add('animate');
-                    });
-                    // Stop observing after animation triggered once
-                    observer.unobserve(aboutSection);
-                }
-            });
-        }, {
-            threshold: 0.3  // 30% visibility triggers animation
-        });
-
-        observer.observe(aboutSection);
-    }
 });

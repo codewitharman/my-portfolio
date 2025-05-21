@@ -177,9 +177,9 @@
             <h2>Featured Projects</h2>
             
             <div class="slideshow-container">
-                <!-- Slide 1 (Projects 1-3) -->
-                <div class="mySlides fade">
-                    <div class="projects-row">
+                <!-- Slide 1 -->
+                <div class="slide fade">
+                    <div class="projects-grid">
                         <!-- Project 1 -->
                         <div class="project-card">
                             <div class="project-content">
@@ -244,9 +244,9 @@
                     </div>
                 </div>
 
-                <!-- Slide 2 (Projects 4-6) -->
-                <div class="mySlides fade">
-                    <div class="projects-row">
+                <!-- Slide 2 -->
+                <div class="slide fade">
+                    <div class="projects-grid">
                         <!-- Project 4 -->
                         <div class="project-card">
                             <div class="project-content">
@@ -315,12 +315,11 @@
 
             <!-- The dots/circles -->
             <div class="dots-container">
-                <span class="dot active" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(1)"></span>
                 <span class="dot" onclick="currentSlide(2)"></span>
             </div>
         </div>
     </section>
-
 
     <!-- Education Section -->
     <section id="education">
@@ -447,7 +446,7 @@
 
         function showSlides(n) {
             let i;
-            let slides = document.getElementsByClassName("mySlides");
+            let slides = document.getElementsByClassName("slide");
             let dots = document.getElementsByClassName("dot");
             
             if (n > slides.length) {slideIndex = 1}
@@ -465,27 +464,10 @@
             dots[slideIndex-1].className += " active";
         }
 
-        // Auto slide functionality (can be enabled if desired)
-        /*
-        let autoSlideInterval;
-        
-        function startAutoSlide() {
-            autoSlideInterval = setInterval(() => {
-                plusSlides(1);
-            }, 8000); // Change slide every 8 seconds
-        }
-        
-        function stopAutoSlide() {
-            clearInterval(autoSlideInterval);
-        }
-        
-        // Start auto slide when page loads
-        document.addEventListener("DOMContentLoaded", startAutoSlide);
-        
-        // Pause auto slide on hover
-        document.querySelector(".slideshow-container").addEventListener("mouseenter", stopAutoSlide);
-        document.querySelector(".slideshow-container").addEventListener("mouseleave", startAutoSlide);
-        */
-    </script>		
+        // Initialize with the first slide
+        document.addEventListener("DOMContentLoaded", function() {
+            showSlides(slideIndex);
+        });
+    </script>	
 </body>
 </html>

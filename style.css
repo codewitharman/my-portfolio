@@ -32,6 +32,29 @@
             padding: 0 20px;
         }
 
+       .sweep-effect {
+           display: inline-block;
+           font-weight: bold;
+           background: linear-gradient(120deg, #ffffff 0%, #3b82f6 40%, #ffffff 80%);
+           background-clip: text;
+           -webkit-background-clip: text;
+           -webkit-text-fill-color: transparent;
+           position: relative;
+           animation: sweep-light 2.5s infinite;
+           background-size: 200% 100%;
+           background-position: -100% 0;
+       }
+       
+       @keyframes sweep-light {
+           0% {
+               background-position: -100% 0;
+           }
+           100% {
+               background-position: 100% 0;
+           }
+       }
+
+
         section {
             padding: 80px 0;
         }

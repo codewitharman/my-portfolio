@@ -64,10 +64,10 @@
     <section id="about">
         <div class="container">
             <div class="about-content">
-                <div class="about-image">
+                <div class="about-image slide-in-left">
                     <img src="profile.jpeg" alt="Arman Shaikh">
                 </div>
-                <div class="about-text">
+                <div class="about-text slide-in-right">
                     <h2>About Me</h2>
                     <p>I am a passionate Java Developer with over 2 years of experience building enterprise applications using Spring Boot, RESTful APIs, and microservices architecture.</p>
                     <p>My journey in software development began during my engineering studies, and I've since worked on various projects that have honed my skills in Java backend development, database management, and API design.</p>
@@ -474,8 +474,20 @@
 	function redirectToWhatsApp() {
 	    window.open('https://wa.me/917715867323', '_blank');
 	}
-
-        // Initialize
+	 document.addEventListener("DOMContentLoaded", () => {
+	        const observer = new IntersectionObserver((entries) => {
+	            entries.forEach((entry) => {
+	                if (entry.isIntersecting) {
+	                    entry.target.classList.add("animate");
+	                }
+	            });
+	        }, { threshold: 0.2 });
+	
+	        document.querySelectorAll('.slide-in-left, .slide-in-right').forEach(el => {
+	            observer.observe(el);
+	        });
+	    });
+	    
         document.addEventListener('DOMContentLoaded', () => {
             navSlide();
             scrollToSection();

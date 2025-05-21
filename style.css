@@ -294,7 +294,7 @@
         }
 
         .skill-tag {
-            background-color: var(--light-gray);
+            background-color: #2563eb;
             padding: 8px 15px;
             border-radius: 30px;
             font-size: 0.9rem;
@@ -304,8 +304,8 @@
         }
 
         .skill-tag:hover {
-            background-color: var(--primary);
-            color: white;
+            background-color: white;
+            color: black;
             transform: translateY(-2px);
         }
 

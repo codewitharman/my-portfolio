@@ -132,22 +132,27 @@ function redirectToWhatsApp() {
 
 document.addEventListener("DOMContentLoaded", () => {
     const aboutSection = document.getElementById('about');
-
-    const observer = new IntersectionObserver((entries, observer) => {
+    const slideElements = aboutSection.querySelectorAll('.slide-in-left, .slide-in-right');
+    
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Add animation class to slide elements inside #about
-                aboutSection.querySelectorAll('.slide-in-left, .slide-in-right').forEach(el => {
+                // Add animation class when the section comes into view
+                slideElements.forEach(el => {
                     el.classList.add('animate');
                 });
-                // Stop observing after animation triggered once
-                observer.unobserve(aboutSection);
+            } else {
+                // Remove animation class when section is out of view
+                // This resets the animation for the next time
+                slideElements.forEach(el => {
+                    el.classList.remove('animate');
+                });
             }
         });
     }, {
         threshold: 0.3  // 30% visible triggers animation
     });
-
+    
     if (aboutSection) {
         observer.observe(aboutSection);
     }

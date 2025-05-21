@@ -777,27 +777,6 @@
            animation-name: slideInRight;
        }
 
-       .typing-effect {
-         width: 30ch; /* Adjust to approx the character count of your text */
-         white-space: nowrap;
-         overflow: hidden;
-         border-right: 3px solid orange; /* Cursor effect */
-         font-family: monospace;
-         animation: typing 4s steps(30), blink 0.75s step-end infinite;
-       }
-       
-       /* Typing animation: steps = number of characters */
-       @keyframes typing {
-         from { width: 0 }
-         to { width: 30ch }
-       }
-       
-       /* Cursor blink animation */
-       @keyframes blink {
-         50% { border-color: transparent }
-         100% { border-color: orange }
-       }
-
        .slideshow-container {
             position: relative;
             max-width: 1200px;
@@ -1046,5 +1025,25 @@
             
             .project-content h3 {
                 font-size: 1.3rem;
+            }
+        }
+
+       .typewriter-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.2em;
+            background-color: #64ffda;
+            margin-left: 2px;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+       @media (max-width: 768px) {
+            p {
+                font-size: 1rem;
             }
         }

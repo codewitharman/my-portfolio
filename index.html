@@ -302,7 +302,7 @@
                             <label for="message">Message</label>
                             <textarea id="message" name="message" required></textarea>
                         </div>
-                        <button type="submit" class="btn">Send Message</button>
+                        <button type="button" class="btn" onclick="redirectToWhatsApp()">Send Message</button>
                     </form>
                 </div>
             </div>
@@ -465,6 +465,10 @@
                 }
             }, 100);
         };
+	    
+	function redirectToWhatsApp() {
+	    window.open('https://wa.me/917715867323', '_blank');
+	}
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
@@ -474,6 +478,7 @@
             backToTop();
             contactForm();
             typeEffect();
+	    redirectToWhatsApp();
         });
      </script>
 </body>

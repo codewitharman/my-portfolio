@@ -484,23 +484,32 @@
 	    window.open('https://wa.me/917715867323', '_blank');
 	}
 	    
-	 document.addEventListener("DOMContentLoaded", () => {
-	  const observer = new IntersectionObserver((entries) => {
-	    entries.forEach((entry) => {
+	document.addEventListener("DOMContentLoaded", () => {
+	  const aboutSection = document.getElementById('about');
+	
+	  const observer = new IntersectionObserver((entries, observer) => {
+	    entries.forEach(entry => {
 	      if (entry.isIntersecting) {
-	        entry.target.classList.add("animate");
-	        // Optionally unobserve if you want animation once only:
-	        observer.unobserve(entry.target);
+	        // Add animation class to slide elements inside #about
+	        aboutSection.querySelectorAll('.slide-in-left, .slide-in-right').forEach(el => {
+	          el.classList.add('animate');
+	        });
+	        // Stop observing after animation triggered once
+	        observer.unobserve(aboutSection);
 	      }
 	    });
-	  }, { threshold: 0.2 });
+	  }, {
+	    threshold: 0.3  // Adjust threshold as needed (30% of about visible triggers)
+	  });
 	
-	  document.querySelectorAll('.slide-in-left, .slide-in-right').forEach(el => {
+	  observer.observe(aboutSection);
+	});
+
+	document.querySelectorAll('.slide-in-left, .slide-in-right').forEach(el => {
 	    observer.observe(el);
 	  });
 	});
-
-	    
+		    
         document.addEventListener('DOMContentLoaded', () => {
             navSlide();
             scrollToSection();

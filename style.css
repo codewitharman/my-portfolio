@@ -854,9 +854,7 @@
 
         /* Project cards - using your existing CSS */
         #projects {
-            background-color: var(--light-gray);
-            padding: 3rem 0;
-        }
+            background-color: var(--light-gray);        }
 
         /* Slideshow container */
         .slideshow-container {

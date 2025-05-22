@@ -258,55 +258,232 @@
         }
 
         /* About Section */
-        #about .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
+       #about .about-content {
+           display: grid;
+           grid-template-columns: 1fr 1fr;
+           gap: 50px;
+           align-items: center;
+       }
+       
+       .about-text h2 {
+           text-align: left;
+       }
+       
+       .about-image {
+           position: relative;
+       }
+       
+       .about-image img {
+           width: 65%;
+           border-radius: 10px;
+           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+       }
+       
+       .skills {
+           margin-top: 30px;
+       }
+       
+       .skills h3 {
+           margin-bottom: 15px;
+       }
+       
+       .skill-tags {
+           display: flex;
+           flex-wrap: wrap;
+           gap: 10px;
+       }
+       
+       .skill-tag {
+           background-color: #2563eb;
+           padding: 8px 15px;
+           border-radius: 30px;
+           font-size: 0.9rem;
+           font-weight: 500;
+           color: #fff;
+           transition: all 0.3s ease;
+       }
+       
+       .skill-tag:hover {
+           background-color: white;
+           color: black;
+           transform: translateY(-2px);
+       }
+       
+       /* Mobile Responsive Styles */
+       @media (max-width: 768px) {
+           #about .about-content {
+               grid-template-columns: 1fr;
+               gap: 30px;
+               text-align: center;
+           }
+           
+           .about-image {
+               order: -1; /* Move image above text on mobile */
+           }
+           
+           .about-image img {
+               width: 80%;
+               max-width: 300px;
+           }
+           
+           .about-text {
+               text-align: center;
+           }
+           
+           .about-text h2 {
+               text-align: center;
+               margin-bottom: 20px;
+           }
+           
+           .about-text p {
+               margin-bottom: 15px;
+               line-height: 1.6;
+           }
+           
+           .skills {
+               margin-top: 25px;
+           }
+           
+           .skills h3 {
+               text-align: center;
+               margin-bottom: 20px;
+           }
+           
+           .skill-tags {
+               justify-content: center;
+               gap: 8px;
+           }
+           
+           .skill-tag {
+               padding: 6px 12px;
+               font-size: 0.85rem;
+           }
+       }
+       
+       /* Small Mobile Devices */
+       @media (max-width: 480px) {
+           #about .about-content {
+               gap: 20px;
+               padding: 0 15px;
+           }
+           
+           .about-image img {
+               width: 90%;
+               max-width: 250px;
+           }
+           
+           .about-text h2 {
+               font-size: 1.8rem;
+               margin-bottom: 15px;
+           }
+           
+           .about-text p {
+               font-size: 0.95rem;
+               margin-bottom: 12px;
+           }
+           
+           .skills h3 {
+               font-size: 1.3rem;
+               margin-bottom: 15px;
+           }
+           
+           .skill-tags {
+               gap: 6px;
+           }
+           
+           .skill-tag {
+               padding: 5px 10px;
+               font-size: 0.8rem;
+               border-radius: 20px;
+           }
+           
+           .skill-tag img {
+               width: 14px !important;
+               margin-right: 4px !important;
+           }
+       }
+       
+       /* Extra Small Devices */
+       @media (max-width: 320px) {
+           .about-text h2 {
+               font-size: 1.6rem;
+           }
+           
+           .about-text p {
+               font-size: 0.9rem;
+           }
+           
+           .skill-tag {
+               padding: 4px 8px;
+               font-size: 0.75rem;
+           }
+           
+           .skill-tag img {
+               width: 12px !important;
+               margin-right: 3px !important;
+           }
+       }
 
-        .about-text h2 {
-            text-align: left;
-        }
+       /* Initial state for both sides */
+       .slide-in-left,
+       .slide-in-right {
+           opacity: 0;
+           transform: translateX(0);
+           animation-fill-mode: forwards;
+           animation-duration: 1s;
+           animation-timing-function: ease-out;
+           animation-delay: 0.2s;
+       }
+       
+       /* Animate from left */
+       .slide-in-left {
+           transform: translateX(-100px);
+           animation-name: slideInLeft;
+       }
+       
+       /* Animate from right */
+       .slide-in-right {
+           transform: translateX(100px);
+           animation-name: slideInRight;
+       }
+       
+       /* Keyframes */
+       @keyframes slideInLeft {
+           to {
+               opacity: 1;
+               transform: translateX(0);
+           }
+       }
+       
+       @keyframes slideInRight {
+           to {
+               opacity: 1;
+               transform: translateX(0);
+           }
+       }
 
-        .about-image {
+       /* Add animation only when .animate is applied */
+       .slide-in-left.animate {
+           animation-name: slideInLeft;
+       }
+       
+       .slide-in-right.animate {
+           animation-name: slideInRight;
+       }
+
+       .slideshow-container {
             position: relative;
+            max-width: 1200px;
+            margin: auto;
+            background-color: var(--light);
+            overflow: hidden;
         }
 
-        .about-image img {
-            width: 65%;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .skills {
-            margin-top: 30px;
-        }
-
-        .skills h3 {
-            margin-bottom: 15px;
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .skill-tag {
-            background-color: #2563eb;
-            padding: 8px 15px;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: #fff;
-            transition: all 0.3s ease;
-        }
-
-        .skill-tag:hover {
-            background-color: white;
-            color: black;
-            transform: translateY(-2px);
+        /* Hide slides by default */
+        .mySlides {
+            display: none;
+            padding: 20px 0;
+            animation: fade 1s ease-in-out;
         }
 
         /* Experience Section */
@@ -728,68 +905,6 @@
             .hero-content h1 {
                 font-size: 2.5rem;
             }
-        }
-
-        /* Initial state for both sides */
-       .slide-in-left,
-       .slide-in-right {
-           opacity: 0;
-           transform: translateX(0);
-           animation-fill-mode: forwards;
-           animation-duration: 1s;
-           animation-timing-function: ease-out;
-           animation-delay: 0.2s;
-       }
-       
-       /* Animate from left */
-       .slide-in-left {
-           transform: translateX(-100px);
-           animation-name: slideInLeft;
-       }
-       
-       /* Animate from right */
-       .slide-in-right {
-           transform: translateX(100px);
-           animation-name: slideInRight;
-       }
-       
-       /* Keyframes */
-       @keyframes slideInLeft {
-           to {
-               opacity: 1;
-               transform: translateX(0);
-           }
-       }
-       
-       @keyframes slideInRight {
-           to {
-               opacity: 1;
-               transform: translateX(0);
-           }
-       }
-
-       /* Add animation only when .animate is applied */
-       .slide-in-left.animate {
-           animation-name: slideInLeft;
-       }
-       
-       .slide-in-right.animate {
-           animation-name: slideInRight;
-       }
-
-       .slideshow-container {
-            position: relative;
-            max-width: 1200px;
-            margin: auto;
-            background-color: var(--light);
-            overflow: hidden;
-        }
-
-        /* Hide slides by default */
-        .mySlides {
-            display: none;
-            padding: 20px 0;
-            animation: fade 1s ease-in-out;
         }
 
         /* Display 3 projects in a row */

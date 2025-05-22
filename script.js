@@ -1,4 +1,13 @@
-// Mobile Navigation
+document.addEventListener('DOMContentLoaded', () => {
+    navSlide();
+    scrollToSection();
+    stickyHeader();
+    backToTop();
+    contactForm();
+    typeEffect();
+});// Mobile Navigation
+
+
 const navSlide = () => {
     const hamburger = document.querySelector('.hamburger');
     const nav = document.querySelector('.nav-links');
@@ -157,11 +166,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    navSlide();
-    scrollToSection();
-    stickyHeader();
-    backToTop();
-    contactForm();
-    typeEffect();
-});
+

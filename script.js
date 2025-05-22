@@ -134,27 +134,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const aboutSection = document.getElementById('about');
     const slideElements = aboutSection.querySelectorAll('.slide-in-left, .slide-in-right');
     
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Add animation class when the section comes into view
-                slideElements.forEach(el => {
-                    el.classList.add('animate');
-                });
-            } else {
-                // Remove animation class when section is out of view
-                // This resets the animation for the next time
-                slideElements.forEach(el => {
-                    el.classList.remove('animate');
-                });
-            }
-        });
-    }, {
-        threshold: 0.3  // 30% visible triggers animation
-    });
-    
     if (aboutSection) {
-        observer.observe(aboutSection);
+        // Initially hide elements
+        slideElements.forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateX(-50px)'; // or adjust based on your animation
+        });
+        
+        // Add mouseover event listener
+        aboutSection.addEventListener('mouseover', () => {
+            slideElements.forEach(el => {
+                el.classList.add('animate');
+            });
+        });
+        
+        // Optional: Add mouseleave to reset animation
+        aboutSection.addEventListener('mouseleave', () => {
+            slideElements.forEach(el => {
+                el.classList.remove('animate');
+            });
+        });
     }
 });
 

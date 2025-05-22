@@ -522,11 +522,11 @@
         }
 
         .timeline-item:nth-child(odd)::after {
-            right: -10px;
+            right: -14px;
         }
 
         .timeline-item:nth-child(even)::after {
-            left: -10px;
+            left: -13px;
         }
 
         .timeline-content {

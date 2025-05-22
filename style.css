@@ -424,42 +424,32 @@
            }
        }
 
-       /* Initial state for both sides */
+       /* Initial state */
        .slide-in-left,
        .slide-in-right {
            opacity: 0;
-           transform: translateX(0);
-           animation-fill-mode: forwards;
-           animation-duration: 1s;
-           animation-timing-function: ease-out;
-           animation-delay: 0.2s;
+           transform: translateX(0); /* default */
+           transition: opacity 1s ease-out, transform 1s ease-out;
        }
        
-       /* Animate from left */
+       /* Animate class */
+       .animate.slide-in-left {
+           opacity: 1;
+           transform: translateX(0);
+       }
+       
+       .animate.slide-in-right {
+           opacity: 1;
+           transform: translateX(0);
+       }
+       
+       /* Slide directions before animate triggers */
        .slide-in-left {
            transform: translateX(-100px);
-           animation-name: slideInLeft;
        }
        
-       /* Animate from right */
        .slide-in-right {
            transform: translateX(100px);
-           animation-name: slideInRight;
-       }
-       
-       /* Keyframes */
-       @keyframes slideInLeft {
-           to {
-               opacity: 1;
-               transform: translateX(0);
-           }
-       }
-       
-       @keyframes slideInRight {
-           to {
-               opacity: 1;
-               transform: translateX(0);
-           }
        }
 
        /* Add animation only when .animate is applied */

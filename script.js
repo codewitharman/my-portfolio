@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeSlider();
     initializeBioTypewriter();
     initializeAboutAnimation();
+    initializeScrollAnimations();
 });
 
 // ===== NAVIGATION FUNCTIONS =====
@@ -282,6 +283,32 @@ const initializeAboutAnimation = () => {
 
     observer.observe(aboutSection);
 };
+
+const initializeScrollAnimations = () => {
+    const animatedSections = document.querySelectorAll('.slide-in-left, .slide-in-right');
+
+    const observer = new IntersectionObserver(
+        (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    observer.unobserve(entry.target); // animate once
+                }
+            });
+        },
+        {
+            threshold: 0.3
+        }
+    );
+
+    animatedSections.forEach(section => observer.observe(section));
+};
+
+// Call this inside DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+    initializeScrollAnimations();
+});
+
 
 
 // ===== UTILITY FUNCTIONS =====

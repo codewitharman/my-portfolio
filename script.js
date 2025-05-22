@@ -136,8 +136,13 @@ const typeEffect = () => {
 };
 
 function redirectToWhatsApp() {
-    window.open('https://wa.me/15551234567?text=Hi,%20I%20came%20across%20your%20portfolio%20and%20wanted%20to%20reach%20out.%20I'm%20interested%20in%20learning%20more.%20Lets%20connect:', '_blank');
+    const phoneNumber = "917715867323"; 
+    const message = "Hi, I came across your portfolio and wanted to reach out. I'm interested in learning more. Let's connect.";
+    const encodedMessage = encodeURIComponent(message);
+    const url = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    window.open(url, '_blank');
 }
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const aboutSection = document.getElementById('about');

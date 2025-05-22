@@ -1157,6 +1157,21 @@
             }
        }
 
+       #leetcode-heading {
+           display: flex;
+           align-items: center;
+           gap: 8px; /* space between icon and text */
+           font-size: 1.5rem; /* optional styling */
+           margin-bottom: 10px; /* optional spacing */
+       }
+       
+       #leetcode-heading .leetcode-icon {
+           width: 24px;
+           height: 24px;
+           filter: invert(1); /* makes it white on dark backgrounds */
+       }
+
+
 /*         @media (max-width: 768px) {
          .about-image {
            display: none;

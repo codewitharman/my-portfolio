@@ -127,7 +127,7 @@ const typeEffect = () => {
 };
 
 function redirectToWhatsApp() {
-    window.open('https://wa.me/15551234567?text=Hi,%20I%20came%20across%20your%20portfolio%20and%20wanted%20to%20reach%20out.%20I'm%20interested%20in%20learning%20more.%20Let's%20connect:', '_blank');
+    window.open('https://wa.me/15551234567?text=Hi,%20I%20came%20across%20your%20portfolio%20and%20wanted%20to%20reach%20out.%20I'm%20interested%20in%20learning%20more.%20Lets%20connect:', '_blank');
 }
 
 document.addEventListener("DOMContentLoaded", () => {

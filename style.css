@@ -1025,7 +1025,7 @@
         .project-content h3 {
             font-size: 1.5rem;
             margin-bottom: 10px;
-            color: var(--secondary);
+            color: #2563eb;
         }
 
         .project-content p {

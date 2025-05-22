@@ -1,37 +1,46 @@
+// Main DOMContentLoaded event listener
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize all functions
     navSlide();
     scrollToSection();
     stickyHeader();
     backToTop();
     contactForm();
     typeEffect();
-});// Mobile Navigation
+    initializeSlider();
+    initializeBioTypewriter();
+    initializeAboutAnimation();
+});
 
+// ===== NAVIGATION FUNCTIONS =====
 
+// Mobile Navigation
 const navSlide = () => {
     const hamburger = document.querySelector('.hamburger');
     const nav = document.querySelector('.nav-links');
     const navLinks = document.querySelectorAll('.nav-links li');
     
-    hamburger.addEventListener('click', () => {
-        // Toggle Nav
-        nav.classList.toggle('nav-active');
-        
-        // Animate Links
-        navLinks.forEach((link, index) => {
-            if (link.style.animation) {
-                link.style.animation = '';
-            } else {
-                link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
-            }
+    if (hamburger && nav) {
+        hamburger.addEventListener('click', () => {
+            // Toggle Nav
+            nav.classList.toggle('nav-active');
+            
+            // Animate Links
+            navLinks.forEach((link, index) => {
+                if (link.style.animation) {
+                    link.style.animation = '';
+                } else {
+                    link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+                }
+            });
+            
+            // Hamburger Animation
+            hamburger.classList.toggle('toggle');
         });
-        
-        // Hamburger Animation
-        hamburger.classList.toggle('toggle');
-    });
+    }
 };
 
-// Scroll to section
+// Scroll to section functionality
 const scrollToSection = () => {
     const navLinks = document.querySelectorAll('header nav ul li a, .footer-links a');
     
@@ -42,54 +51,64 @@ const scrollToSection = () => {
             const targetId = this.getAttribute('href');
             const targetSection = document.querySelector(targetId);
             
-            window.scrollTo({
-                top: targetSection.offsetTop - 70,
-                behavior: 'smooth'
-            });
-            
-            // Close mobile menu if open
-            const nav = document.querySelector('.nav-links');
-            const hamburger = document.querySelector('.hamburger');
-            if (nav.classList.contains('nav-active')) {
-                nav.classList.remove('nav-active');
-                hamburger.classList.remove('toggle');
+            if (targetSection) {
+                window.scrollTo({
+                    top: targetSection.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                const nav = document.querySelector('.nav-links');
+                const hamburger = document.querySelector('.hamburger');
+                if (nav && nav.classList.contains('nav-active')) {
+                    nav.classList.remove('nav-active');
+                    hamburger.classList.remove('toggle');
+                }
             }
         });
     });
 };
 
+// ===== HEADER FUNCTIONS =====
+
 // Sticky Header
 const stickyHeader = () => {
     const header = document.querySelector('header');
     
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 100) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
+    if (header) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    }
 };
 
 // Back to Top Button
 const backToTop = () => {
     const backToTopButton = document.querySelector('.back-to-top');
     
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 500) {
-            backToTopButton.classList.add('visible');
-        } else {
-            backToTopButton.classList.remove('visible');
-        }
-    });
-    
-    backToTopButton.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+    if (backToTopButton) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
         });
-    });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 };
+
+// ===== FORM FUNCTIONS =====
 
 // Contact Form Submit
 const contactForm = () => {
@@ -107,7 +126,12 @@ const contactForm = () => {
             
             // Normally you would send this data to a server
             // For demo, we'll just log it and show a success message
-            console.log({name, email, subject, message});
+            console.log({
+                name: name,
+                email: email,
+                subject: subject,
+                message: message
+            });
             
             // Clear form fields
             form.reset();
@@ -118,23 +142,156 @@ const contactForm = () => {
     }
 };
 
+// ===== TEXT ANIMATION FUNCTIONS =====
+
 // Type effect for hero text
 const typeEffect = () => {
     const text = document.querySelector('.hero-content h1 span');
-    const fullText = text.textContent;
-    text.textContent = '';
     
-    let i = 0;
-    const typing = setInterval(() => {
-        if (i < fullText.length) {
-            text.textContent += fullText.charAt(i);
-            i++;
-        } else {
-            clearInterval(typing);
-        }
-    }, 100);
+    if (text) {
+        const fullText = text.textContent;
+        text.textContent = '';
+        
+        let i = 0;
+        const typing = setInterval(() => {
+            if (i < fullText.length) {
+                text.textContent += fullText.charAt(i);
+                i++;
+            } else {
+                clearInterval(typing);
+            }
+        }, 100);
+    }
 };
 
+// Bio typewriter effect
+const initializeBioTypewriter = () => {
+    const bioElement = document.getElementById('bio-text');
+    
+    if (bioElement) {
+        const originalText = bioElement.textContent;
+        
+        // Clear the element's content
+        bioElement.textContent = '';
+        
+        // Create cursor element
+        const cursor = document.createElement('span');
+        cursor.className = 'typewriter-cursor';
+        bioElement.appendChild(cursor);
+        
+        let charIndex = 0;
+        const typingSpeed = 40; // milliseconds per character
+        
+        function typeWriter() {
+            if (charIndex < originalText.length) {
+                // Create a text node before the cursor
+                bioElement.insertBefore(
+                    document.createTextNode(originalText.charAt(charIndex)),
+                    cursor
+                );
+                charIndex++;
+                setTimeout(typeWriter, typingSpeed);
+            }
+        }
+        
+        // Start typing after a short delay
+        setTimeout(typeWriter, 500);
+    }
+};
+
+// ===== SLIDER FUNCTIONS =====
+
+// Slider variables
+let slideIndex = 1;
+
+// Initialize slider
+const initializeSlider = () => {
+    const slides = document.getElementsByClassName("slide");
+    if (slides.length > 0) {
+        showSlides(slideIndex);
+    }
+};
+
+// Next/previous controls
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
+
+// Show slides function
+function showSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("slide");
+    let dots = document.getElementsByClassName("dot");
+    
+    if (slides.length === 0) return;
+    
+    if (n > slides.length) {
+        slideIndex = 1;
+    }
+    if (n < 1) {
+        slideIndex = slides.length;
+    }
+    
+    // Hide all slides
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    
+    // Remove active class from all dots
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    
+    // Show current slide and activate corresponding dot
+    if (slides[slideIndex - 1]) {
+        slides[slideIndex - 1].style.display = "block";
+    }
+    if (dots[slideIndex - 1]) {
+        dots[slideIndex - 1].className += " active";
+    }
+}
+
+// ===== ANIMATION FUNCTIONS =====
+
+// About section slide animation
+const initializeAboutAnimation = () => {
+    const aboutSection = document.getElementById('about');
+    
+    if (aboutSection) {
+        const slideElements = aboutSection.querySelectorAll('.slide-in-left, .slide-in-right');
+        
+        if (slideElements.length > 0) {
+            // Initially hide elements
+            slideElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateX(-50px)';
+            });
+            
+            // Add mouseover event listener
+            aboutSection.addEventListener('mouseover', () => {
+                slideElements.forEach(el => {
+                    el.classList.add('animate');
+                });
+            });
+            
+            // Optional: Add mouseleave to reset animation
+            aboutSection.addEventListener('mouseleave', () => {
+                slideElements.forEach(el => {
+                    el.classList.remove('animate');
+                });
+            });
+        }
+    }
+};
+
+// ===== UTILITY FUNCTIONS =====
+
+// WhatsApp redirect function
 function redirectToWhatsApp() {
     const phoneNumber = "917715867323"; 
     const message = "Hi, I came across your portfolio and wanted to reach out. I'm interested in learning more. Let's connect.";
@@ -143,32 +300,107 @@ function redirectToWhatsApp() {
     window.open(url, '_blank');
 }
 
+// ===== AUTO SLIDER FUNCTIONS (OPTIONAL) =====
 
-document.addEventListener("DOMContentLoaded", () => {
-    const aboutSection = document.getElementById('about');
-    const slideElements = aboutSection.querySelectorAll('.slide-in-left, .slide-in-right');
+// Auto-advance slider (uncomment if needed)
+/*
+const startAutoSlider = () => {
+    setInterval(() => {
+        plusSlides(1);
+    }, 5000); // Change slide every 5 seconds
+};
+*/
+
+// ===== SCROLL ANIMATIONS (OPTIONAL) =====
+
+// Intersection Observer for scroll animations (uncomment if needed)
+/*
+const observeElements = () => {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+            }
+        });
+    });
     
-    if (aboutSection) {
-        // Initially hide elements
-        slideElements.forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateX(-50px)'; // or adjust based on your animation
-        });
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    animatedElements.forEach(el => observer.observe(el));
+};
+*/
+
+// ===== PERFORMANCE OPTIMIZATIONS =====
+
+// Throttle function for scroll events
+function throttle(func, delay) {
+    let timeoutId;
+    let lastExecTime = 0;
+    return function (...args) {
+        const currentTime = Date.now();
         
-        // Add mouseover event listener
-        aboutSection.addEventListener('mouseover', () => {
-            slideElements.forEach(el => {
-                el.classList.add('animate');
-            });
-        });
-        
-        // Optional: Add mouseleave to reset animation
-        aboutSection.addEventListener('mouseleave', () => {
-            slideElements.forEach(el => {
-                el.classList.remove('animate');
-            });
-        });
+        if (currentTime - lastExecTime > delay) {
+            func.apply(this, args);
+            lastExecTime = currentTime;
+        } else {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => {
+                func.apply(this, args);
+                lastExecTime = Date.now();
+            }, delay - (currentTime - lastExecTime));
+        }
+    };
+}
+
+// Debounce function for resize events
+function debounce(func, delay) {
+    let timeoutId;
+    return function (...args) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => func.apply(this, args), delay);
+    };
+}
+
+// ===== ERROR HANDLING =====
+
+// Global error handler
+window.addEventListener('error', (e) => {
+    console.error('JavaScript Error:', e.error);
+});
+
+// ===== ACCESSIBILITY ENHANCEMENTS =====
+
+// Keyboard navigation for slider
+document.addEventListener('keydown', (e) => {
+    const slides = document.getElementsByClassName("slide");
+    if (slides.length > 0) {
+        if (e.key === 'ArrowLeft') {
+            plusSlides(-1);
+        } else if (e.key === 'ArrowRight') {
+            plusSlides(1);
+        }
     }
 });
 
+// Focus management for mobile menu
+const manageFocus = () => {
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('.nav-links');
+    
+    if (hamburger && nav) {
+        hamburger.addEventListener('click', () => {
+            if (nav.classList.contains('nav-active')) {
+                const firstLink = nav.querySelector('a');
+                if (firstLink) {
+                    firstLink.focus();
+                }
+            }
+        });
+    }
+};
 
+// Initialize focus management
+document.addEventListener('DOMContentLoaded', manageFocus);
+
+// ===== CONSOLE LOG FOR DEBUGGING =====
+console.log('Script.js loaded successfully!');
+console.log('All functions initialized and ready to use.');

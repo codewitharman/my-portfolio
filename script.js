@@ -261,33 +261,28 @@ function showSlides(n) {
 // About section slide animation
 const initializeAboutAnimation = () => {
     const aboutSection = document.getElementById('about');
-    
-    if (aboutSection) {
-        const slideElements = aboutSection.querySelectorAll('.slide-in-left, .slide-in-right');
-        
-        if (slideElements.length > 0) {
-            // Initially hide elements
-            slideElements.forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateX(-50px)';
+
+    if (!aboutSection) return;
+
+    const slideElements = aboutSection.querySelectorAll('.slide-in-left, .slide-in-right');
+
+    const observer = new IntersectionObserver(
+        (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    slideElements.forEach(el => el.classList.add('animate'));
+                    observer.unobserve(aboutSection);
+                }
             });
-            
-            // Add mouseover event listener
-            aboutSection.addEventListener('mouseover', () => {
-                slideElements.forEach(el => {
-                    el.classList.add('animate');
-                });
-            });
-            
-            // Optional: Add mouseleave to reset animation
-            aboutSection.addEventListener('mouseleave', () => {
-                slideElements.forEach(el => {
-                    el.classList.remove('animate');
-                });
-            });
+        },
+        {
+            threshold: 0.3 // 30% of section is visible
         }
-    }
+    );
+
+    observer.observe(aboutSection);
 };
+
 
 // ===== UTILITY FUNCTIONS =====
 

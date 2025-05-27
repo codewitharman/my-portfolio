@@ -899,3 +899,260 @@
        .hire-me:hover {
            background-color: #059669;
        }
+
+        /* Projects section */
+        #projects {
+            background-color: var(--light-gray);
+            padding: 60px 0;
+            position: relative;
+        }
+
+        #projects h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        /* Sticky cards container */
+        .projects-container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            transform-origin: center top;
+            will-change: transform;
+            margin-bottom: 60px;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Individual card positioning and animations */
+        .project-card:nth-child(1) {
+            top: calc(80px + 5vh);
+            z-index: 1;
+            view-timeline: --card-1-timeline block;
+            animation: scale-card linear both;
+            animation-timeline: --card-1-timeline;
+            animation-range: entry 100px entry 400px;
+        }
+
+        .project-card:nth-child(2) {
+            top: calc(100px + 7vh);
+            z-index: 2;
+            view-timeline: --card-2-timeline block;
+            animation: scale-card linear both;
+            animation-timeline: --card-2-timeline;
+            animation-range: entry 100px entry 400px;
+        }
+
+        .project-card:nth-child(3) {
+            top: calc(120px + 9vh);
+            z-index: 3;
+            view-timeline: --card-3-timeline block;
+            animation: scale-card linear both;
+            animation-timeline: --card-3-timeline;
+            animation-range: entry 100px entry 400px;
+        }
+
+        .project-card:nth-child(4) {
+            top: calc(140px + 11vh);
+            z-index: 4;
+            view-timeline: --card-4-timeline block;
+            animation: scale-card linear both;
+            animation-timeline: --card-4-timeline;
+            animation-range: entry 100px entry 400px;
+        }
+
+        .project-card:nth-child(5) {
+            top: calc(160px + 13vh);
+            z-index: 5;
+            view-timeline: --card-5-timeline block;
+            animation: scale-card linear both;
+            animation-timeline: --card-5-timeline;
+            animation-range: entry 100px entry 400px;
+        }
+
+        .project-card:nth-child(6) {
+            top: calc(180px + 15vh);
+            z-index: 6;
+            view-timeline: --card-6-timeline block;
+            animation: scale-card linear both;
+            animation-timeline: --card-6-timeline;
+            animation-range: entry 100px entry 400px;
+        }
+
+        @keyframes scale-card {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.85);
+                opacity: 1;
+            }
+        }
+
+        .project-content {
+            padding: 40px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        .project-content p {
+            margin-bottom: 20px;
+            color: var(--gray);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px 0;
+            gap: 10px;
+        }
+
+        .project-tech span {
+            font-size: 0.85rem;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: transform 0.2s ease;
+        }
+
+        .project-tech span:hover {
+            transform: translateY(-2px);
+        }
+
+        .project-content ul {
+            list-style-type: none;
+            margin: 20px 0;
+        }
+
+        .project-content li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 25px;
+            line-height: 1.6;
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        .project-content li:before {
+            content: "→";
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+
+        /* Fallback for browsers without view-timeline support */
+        @supports not (animation-timeline: view()) {
+            .project-card {
+                animation: none;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            
+            .project-card:hover {
+                transform: translateY(-10px) scale(1.02);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            }
+        }
+
+/* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            #projects h2 {
+                font-size: 2rem;
+            }
+
+            .project-card {
+                margin-bottom: 40px;
+                min-height: auto;
+            }
+
+            .project-card:nth-child(1) { top: calc(60px + 3vh); }
+            .project-card:nth-child(2) { top: calc(75px + 4vh); }
+            .project-card:nth-child(3) { top: calc(90px + 5vh); }
+            .project-card:nth-child(4) { top: calc(105px + 6vh); }
+            .project-card:nth-child(5) { top: calc(120px + 7vh); }
+            .project-card:nth-child(6) { top: calc(135px + 8vh); }
+
+            .project-content {
+                padding: 25px;
+            }
+
+            .project-content h3 {
+                font-size: 1.5rem;
+            }
+
+            .project-content p {
+                font-size: 1rem;
+            }
+
+            .project-tech span {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+
+            .project-content li {
+                font-size: 0.95rem;
+            }
+
+            .footer-content h2 {
+                font-size: 2.2rem;
+            }
+
+            .footer-content p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .project-content {
+                padding: 20px;
+            }
+
+            .project-tech {
+                gap: 8px;
+            }
+
+            .project-tech span {
+                font-size: 0.75rem;
+                padding: 5px 10px;
+            }
+        }
+
+       

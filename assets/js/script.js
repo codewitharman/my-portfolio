@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     backToTop();
     contactForm();
     typeEffect();
-    initializeSlider();
     initializeBioTypewriter();
     initializeAboutAnimation();
     initializeScrollAnimations();

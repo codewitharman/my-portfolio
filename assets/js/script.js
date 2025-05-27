@@ -200,63 +200,6 @@ const initializeBioTypewriter = () => {
     }
 };
 
-// ===== SLIDER FUNCTIONS =====
-
-// Slider variables
-let slideIndex = 1;
-
-// Initialize slider
-const initializeSlider = () => {
-    const slides = document.getElementsByClassName("slide");
-    if (slides.length > 0) {
-        showSlides(slideIndex);
-    }
-};
-
-// Next/previous controls
-function plusSlides(n) {
-    showSlides(slideIndex += n);
-}
-
-// Thumbnail image controls
-function currentSlide(n) {
-    showSlides(slideIndex = n);
-}
-
-// Show slides function
-function showSlides(n) {
-    let i;
-    let slides = document.getElementsByClassName("slide");
-    let dots = document.getElementsByClassName("dot");
-    
-    if (slides.length === 0) return;
-    
-    if (n > slides.length) {
-        slideIndex = 1;
-    }
-    if (n < 1) {
-        slideIndex = slides.length;
-    }
-    
-    // Hide all slides
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    
-    // Remove active class from all dots
-    for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-    }
-    
-    // Show current slide and activate corresponding dot
-    if (slides[slideIndex - 1]) {
-        slides[slideIndex - 1].style.display = "block";
-    }
-    if (dots[slideIndex - 1]) {
-        dots[slideIndex - 1].className += " active";
-    }
-}
-
 // ===== ANIMATION FUNCTIONS =====
 
 // About section slide animation
@@ -322,34 +265,7 @@ function redirectToWhatsApp() {
     window.open(url, '_blank');
 }
 
-// ===== AUTO SLIDER FUNCTIONS (OPTIONAL) =====
 
-// Auto-advance slider (uncomment if needed)
-/*
-const startAutoSlider = () => {
-    setInterval(() => {
-        plusSlides(1);
-    }, 5000); // Change slide every 5 seconds
-};
-*/
-
-// ===== SCROLL ANIMATIONS (OPTIONAL) =====
-
-// Intersection Observer for scroll animations (uncomment if needed)
-/*
-const observeElements = () => {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate');
-            }
-        });
-    });
-    
-    const animatedElements = document.querySelectorAll('.animate-on-scroll');
-    animatedElements.forEach(el => observer.observe(el));
-};
-*/
 
 // ===== PERFORMANCE OPTIMIZATIONS =====
 

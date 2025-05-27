@@ -1,6 +1,4 @@
-// Main DOMContentLoaded event listener
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize all functions
     navSlide();
     scrollToSection();
     stickyHeader();
@@ -12,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeScrollAnimations();
 });
 
-// ===== NAVIGATION FUNCTIONS =====
+
 
 // Mobile Navigation
 const navSlide = () => {
@@ -57,7 +55,6 @@ const scrollToSection = () => {
                     behavior: 'smooth'
                 });
                 
-                // Close mobile menu if open
                 const nav = document.querySelector('.nav-links');
                 const hamburger = document.querySelector('.hamburger');
                 if (nav && nav.classList.contains('nav-active')) {
@@ -69,7 +66,6 @@ const scrollToSection = () => {
     });
 };
 
-// ===== HEADER FUNCTIONS =====
 
 // Sticky Header
 const stickyHeader = () => {
@@ -110,7 +106,6 @@ const backToTop = () => {
 
 // ===== FORM FUNCTIONS =====
 
-// Contact Form Submit
 const contactForm = () => {
     const form = document.getElementById('contactForm');
     
